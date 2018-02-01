@@ -1,0 +1,55 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'io.objectbox'
+
+android {
+    compileSdkVersion sdkVersion
+    buildToolsVersion buildToolsVersionVersion
+
+    defaultConfig {
+        applicationId "com.github.aleksandermielczarek.objectboxunittest"
+        minSdkVersion minSdkVersionVersion
+        targetSdkVersion sdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+dependencies {
+    //test
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "org.mockito:mockito-inline:$mockitoVersion"
+    testImplementation("com.nhaarman:mockito-kotlin-kt1.1:$mockitokotlinVersion") {
+        exclude group: "org.jetbrains.kotlin"
+    }
+    testImplementation "io.objectbox:objectbox-windows:$objectboxVersion"
+
+    //support
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+
+    //kotlin
+    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+
+    //objectbox
+    api "io.objectbox:objectbox-android:$objectboxVersion"
+    api "io.objectbox:objectbox-kotlin:$objectboxVersion"
+    kapt "io.objectbox:objectbox-processor:$objectboxVersion"
+}
