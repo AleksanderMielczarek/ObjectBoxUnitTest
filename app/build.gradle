@@ -25,6 +25,7 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
         test.java.srcDirs += 'src/test/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
     }
     testOptions {
         unitTests.returnDefaultValues = true
@@ -40,6 +41,8 @@ dependencies {
         exclude group: "org.jetbrains.kotlin"
     }
     testImplementation "io.objectbox:objectbox-windows:$objectboxVersion"
+    androidTestImplementation "com.android.support.test:runner:$runnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoCoreVersion"
 
     //support
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
