@@ -2,7 +2,7 @@ package com.github.aleksandermielczarek.objectboxunittest
 
 import android.support.test.filters.LargeTest
 import android.support.test.runner.AndroidJUnit4
-import org.junit.Assert
+import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -26,7 +26,7 @@ class ObjectBoxInstrumentedTest {
 
         objectBoxRule.orderBox.put(order)
 
-        Assert.assertTrue(objectBoxRule.orderBox.all.any { it.name == "Order" })
-        Assert.assertTrue(objectBoxRule.orderBox.all.any { it.customer.target.name == "Customer" })
+        assertTrue(objectBoxRule.orderBox.all.any { it.name == "Order" })
+        assertTrue(objectBoxRule.orderBox.all.any { it.customer.target.name == "Customer" })
     }
 }
